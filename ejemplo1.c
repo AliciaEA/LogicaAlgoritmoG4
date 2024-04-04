@@ -2,5 +2,5 @@
 
 main()
 {
-    printf("Hola mundo desde la UAM");
+    printf("Hola mundo desde la UAM\n");
 }
