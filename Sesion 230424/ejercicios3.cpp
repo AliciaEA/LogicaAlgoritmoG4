@@ -16,23 +16,34 @@ float precioSinImpuesto(int costoDistancia);
 
 int main()
 {
-    int distancia, kmExtra, costoDist = 30;
+    int distancia, kmExtra;
+    float costoDist = 30;
     float precioTotal;
 
     cout << "Proporciona la distancia recorrida (en km) por el usuario: ";
     cin >> distancia;
 
-    if (distancia <= 500)
+    if (distancia > 0 && distancia <= 500 )
     {
 
         printf("El precio con impuestos sera $%i", costoDist);
         printf("\nEl precio sin impuestos sera $%.2f", precioSinImpuesto(costoDist));
     }
-    else if (distancia <= 1000)
+    else if (distancia > 0 && distancia <= 1000)
     {
         float porcentaje;
         kmExtra = distancia - 500;
-        porcentaje = costoDist * 0.5;
+        porcentaje = costoDist * 0.05;
+        precioTotal = costoDist + (kmExtra * porcentaje);
+
+        printf("El precio con impuestos sera $%.2f", precioTotal);
+        printf("\nEl precio sin impuesto sera $%.2f", precioSinImpuesto(precioTotal));
+    }
+    else if (distancia > 1000)
+    {
+        float porcentaje;
+        kmExtra = distancia - 1000;
+        porcentaje = costoDist * 0.08;
         precioTotal = costoDist + (kmExtra * porcentaje);
 
         printf("El precio con impuestos sera $%.2f", precioTotal);
@@ -40,13 +51,7 @@ int main()
     }
     else
     {
-        float porcentaje;
-        kmExtra = distancia - 1000;
-        porcentaje = costoDist * 0.5;
-        precioTotal = costoDist + (kmExtra * porcentaje);
-
-        printf("El precio con impuestos sera $%.2f", precioTotal);
-        printf("\nEl precio sin impuesto sera $%.2f", precioSinImpuesto(precioTotal));
+        cout << "Distancia invalida...";
     }
 }
 
