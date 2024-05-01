@@ -3,9 +3,10 @@
 using namespace std;
 
 void mostrar(int x, int y);
+
 int main()
 {
-    int x, y;
+     int x, y;
 
     cout << "Digit un #: " << endl;
     cin >> x;
@@ -16,7 +17,9 @@ int main()
     cout << "Los numeros impares del " << x << " al " << y << " son: " << endl;
 
         mostrar(x, y);
+   
 }
+
 
 void mostrar(int x, int y)
 {
