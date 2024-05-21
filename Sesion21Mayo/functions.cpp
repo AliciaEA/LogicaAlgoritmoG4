@@ -26,10 +26,10 @@ void addReg()
     scanf(" %[^\n]", people[pos].name);
 
     cout << "Apellidos: ";
-    scanf(" %[^\n]", people[pos].lastname);
+    scanf(" %[^\n]", people[pos].lastName);
 
     cout << "Año: ";
-    scanf("%d", people[pos].year);
+    scanf("%d", &people[pos].year);
     pos++;
 }
 
@@ -39,7 +39,7 @@ void showReg()
     printf("Registros: ");
     for (int i = 0; i < pos; i++)
     {
-        printf("Nombre: %s %s \n Año: %d", people[i].name, people[i].lastname, people[i].year);
+        printf("Nombre: %s %s \n Año: %d", people[i].name, people[i].lastName, people[i].year);
         cout << "***********************" << endl;
     }
 }
@@ -50,6 +50,7 @@ void menu()
     do
     {
         system("cls || clear");
+        cout << "Menu\n";
         cout << "1. Agregar" << endl;
         cout << "2. Mostrar" << endl;
         cout << "3. Salir" << endl;

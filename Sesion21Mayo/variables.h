@@ -7,7 +7,7 @@ typedef struct PERSON
 {
     char cif[MAX_STR];
     char name[MAX_STR];
-    char lastname[MAX_STR];
+    char lastName[MAX_STR];
     int year;
 };
 
