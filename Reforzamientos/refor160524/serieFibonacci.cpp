@@ -14,6 +14,7 @@ void calcularFibonacci(int n, int fibonacci[]) {
             siguiente = num1 + num2;
             num1 = num2; //Penúltimo num. de la serie
             num2 = siguiente; //Último num. de la serie
+            num2 = siguiente; //Último num. de la serie
         }
         fibonacci[i] = siguiente;
     }
