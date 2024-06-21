@@ -1,14 +1,19 @@
 #include <iostream>
 #include <string.h>
+#include <fstream>
+#include <cstdlib>
 #include "variables.h"
 
 using namespace std;
+
+//manejo de archivos
+int loadCities();
+void writeFile(const CITY &city);
 
 CITY cities[MAX_REG];
 int pos = 0;
 
 // funciones
-
 void pedirDatos();
 void mostrarTodo();
 void addCity(CITY *city);
@@ -54,7 +59,6 @@ void buscar()
     cout << "Descripcion: " << city.description << endl;
 }
 
-
 int findPos(int id)
 {
     for (int i = 0; i < pos; i++)
@@ -87,8 +91,6 @@ void editar()
     scanf(" %[^\n]", city.description);
     updateCity(&city, id);
     cout << "Registro actualizado..." << endl;
-
-
 }
 
 void destroyCity(int id)
@@ -137,6 +139,7 @@ void pedirDatos()
     cout << "Ingresa la descripcion de la ciudad: ";
     scanf(" %[^\n]", city.description);
     addCity(&city);
+    writeFile(city);
 }
 void mostrarTodo()
 {
@@ -152,6 +155,7 @@ void mostrarTodo()
 void principal()
 {
     int op;
+    pos = loadCities();
     do
     {
         op = menu();
@@ -166,7 +170,7 @@ void principal()
         case 3:
             eliminar();
             break;
-        case 4: 
+        case 4:
             mostrarTodo();
             break;
         case 5:
@@ -180,4 +184,42 @@ void principal()
             break;
         }
     } while (op != 6);
+}
+
+int loadCities()
+{
+    ifstream archivo("city.txt");
+    if (archivo.fail())
+    {
+        return 0;
+    }
+
+    int i=0;
+
+    while (archivo >> cities[i].id)
+    {
+        archivo.ignore();
+        archivo.getline(cities[i].name, 30);
+        archivo.getline(cities[i].description, 100);
+        i++;
+    }
+    archivo.close();
+    return i;
+}
+
+void writeFile(const CITY &city)
+{
+    ofstream archivo;
+
+    archivo.open("city.txt", ios::app);
+    if (archivo.fail())
+    {
+        cout << "No se pudo abrir el archivo" << endl;
+        exit(1);
+    }
+    
+    archivo << city.id << endl;
+    archivo << city.name << endl;
+    archivo << city.description << endl;
+    archivo.close();
 }
